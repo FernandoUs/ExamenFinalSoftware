@@ -21,8 +21,8 @@ class TestMensajeriaSQLite(unittest.TestCase):
     def test_enviar_mensaje(self):
         response = self.app.post('/mensajeria/enviar', json={
             "usuario": "cpaz",
-            "contacto": "lmunoz",
-            "mensaje": "Hola Luisa"
+            "contacto": "Alihew",
+            "mensaje": "Hola Napa"
         })
         self.assertEqual(response.status_code, 200)
         self.assertIn("Mensaje enviado correctamente", response.get_data(as_text=True))
@@ -35,12 +35,12 @@ class TestMensajeriaSQLite(unittest.TestCase):
     
     def test_contacto_invalido(self):
         response = self.app.post('/mensajeria/enviar', json={
-            "usuario": "lmunoz",
+            "usuario": "Alihew",
             "contacto": "cpaz",
             "mensaje": "Hola Christian"
         })
         self.assertEqual(response.status_code, 400)
-        self.assertIn("El destinatario no es un contacto valido", response.get_data(as_text=True))
+        self.assertIn("El usuario destinatario no es un contacto valido", response.get_data(as_text=True))
 
 if __name__ == '__main__':
     unittest.main()
